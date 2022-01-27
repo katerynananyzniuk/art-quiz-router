@@ -1,0 +1,8 @@
+.page-btn{
+  padding: 5px;
+  margin: 10px;
+  background-color: rgba(128, 128, 128, 0.418);
+  color: #000;
+  text-decoration: none;
+  border-radius: 5px;
+}

@@ -1,29 +1,20 @@
 
-import home from '../views/home.js'
-import settings from '../views/settings.js'
-import categories from '../views/categories.js'
-import question from '../views/question.js'
 
-export default function Router(routes) {
-    try {
-        if (!routes) {
-            throw 'error: routes param is mandatory';
-        }
-        this.constructor(routes);
-        this.init();
-    } catch (e) {
-        console.error(e);   
+const _modules = {
+    home: () => import('../views/home.js'),
+    categories: () => import('../views/categories.js'),
+    question: () => import('../views/question.js'),
+    settings: () => import('../views/settings.js'),
+  };
+export default class Router{
+    static get modules() {
+        return _modules
     }
-}
-
-Router.prototype = {
-    routes: undefined,
-    rootElem: undefined,
-    constructor: function (routes) {
-        this.routes = routes;
-        this.rootElem = document.getElementById('app');
-    },
-    init: function () {
+    constructor(routes, rootElem) {
+        this.routes = routes
+        this.rootElem = document.getElementById('app')
+    }
+    init() {
         var r = this.routes;
         (function(scope, r) { 
             window.addEventListener('hashchange', function (e) {
@@ -31,8 +22,8 @@ Router.prototype = {
             });
         })(this, r);
         this.hasChanged(this, r);
-    },
-    hasChanged: function(scope, r){
+    }
+    hasChanged(scope, r) {
         if (window.location.hash.length > 0) {
             for (var i = 0, length = r.length; i < length; i++) {
                 var route = r[i];
@@ -48,8 +39,8 @@ Router.prototype = {
                 }
             }
         }
-    },
-    goToRoute: function (htmlName) {
+    }
+    goToRoute(htmlName) {
         (function(scope) { 
             var url = 'views/' + htmlName,
             xhttp = new XMLHttpRequest();
@@ -81,4 +72,4 @@ Router.prototype = {
             xhttp.send();
         })(this);
     }
-};
+}

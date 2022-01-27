@@ -5,9 +5,15 @@ const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 module.exports = {
   context: path.resolve(__dirname, 'src'),
   mode: 'development',
-  entry: './index.js',
+  entry: {
+    'bundle' :'./index.js',
+    'bundle-home' : './views/home.js',
+    'bundle-categories' : './views/categories.js',
+    'bundle-question' : './views/question.js',
+    'bundle-settings' : './views/settings.js',
+  },
   output: {
-    filename: 'bundle.[contenthash].js',
+    filename: '[name].js',
     path: path.resolve(__dirname, 'dist')
   },
   resolve: {
@@ -18,6 +24,7 @@ module.exports = {
       '@js': path.resolve(__dirname, 'src/js'),
       '@assets': path.resolve(__dirname, 'src/assets'),
       '@styles': path.resolve(__dirname, 'src/styles'),
+      '@modules': path.resolve(__dirname, 'src/modules'),
     }
   },
   plugins: [

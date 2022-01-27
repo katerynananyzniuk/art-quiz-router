@@ -1,24 +1,10 @@
-export default function Route(name, htmlName, defaultRoute) {
-    try {
-        if(!name || !htmlName) {
-            throw 'error: name and htmlName params are mandatories';
-        }
-        this.constructor(name, htmlName, defaultRoute);
-    } catch (e) {
-        console.error(e);
+export default class Route{
+    constructor(name, htmlName, defaultRoute) {
+        this.name = name
+        this.htmlName = htmlName
+        this.defaultRoute = defaultRoute
     }
-}
-
-Route.prototype = {
-    name: undefined,
-    htmlName: undefined,
-    default: undefined,
-    constructor: function (name, htmlName, defaultRoute) {
-        this.name = name;
-        this.htmlName = htmlName;
-        this.default = defaultRoute;
-    },
-    isActiveRoute: function (hashedPath) {
+    isActiveRoute(hashedPath) {
         return hashedPath.replace('#', '') === this.name; 
     }
 }
