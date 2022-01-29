@@ -1,22 +1,36 @@
-import { type } from '../views/home.js'
-import { category } from '../views/categories.js'
-import Question from '../modules/Question.js'
+import { type } from '@views/home' 
+import { category } from '@views/categories'
+import Category from '@modules/Category'
+import Question from '@modules/Question'
 
+// const toHTML = question => `
+//   <h2>Hello from question.js</h2>
+//   <hr>
+//   <h3>${(type === 'artists')?`Кто автор данной картины "${category.arrForQuestions[0].name}"?`:`Какую картину написал "${category.arrForQuestions[0].author}"?`}</h3>
+//   <button class="page-btn" data-btn="question">1</button>
+// `
+let question;
 
 function renderQuestion(){
-  let q = document.createElement("div")
-  q.innerHTML = `
+  
+  question = new Question(type, category)
+  console.log(question);
+
+  let wrapper = document.createElement("div")
+  wrapper.classList.add('question')
+  wrapper.classList.add('page')
+  wrapper.innerHTML = `
   <h2>Hello from question.js</h2>
   <hr>
-  <h3>${(type.type === 'artists')?`Кто автор данной картины "${category.questions[0]}"?`:`Какую картину написал "${category.questions[0]}"?`}</h3>
-  `
-  q.classList.add('question')
-  q.classList.add('page')
-  let app = document.querySelector('#app')
+  <h3>${(type === 'artists')?`Кто автор данной картины "${category.arrForQuestions[0].name}"?`:`Какую картину написал "${category.arrForQuestions[0].author}"?`}</h3>
+  <button class="page-btn" data-btn="question">1</button>
+   `
+
+  const app = document.getElementById('app')
   app.innerHTML = ''
-  app.append(q)
+  app.append(wrapper)
   console.log('Hello from question.js');
 }
 
-let question = 'question'
+
 export { question, renderQuestion }

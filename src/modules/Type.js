@@ -1,7 +1,6 @@
-import images from '../assets/images.js'
-
 export default class Type{
-  constructor(type){
-    this.type = type;
+  constructor(title, image){
+    this.title = title;
+    this.image = image;
   }
 }
