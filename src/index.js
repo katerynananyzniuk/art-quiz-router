@@ -16,16 +16,14 @@ import Category from '@modules/Category'
 
 console.log('Hello from the Home entry point!');
 
-let portrait = new Category('artists', 'portrait', 1)
-portrait.questions
-
-
 const home = document.getElementById('home')
 home.addEventListener('click', homeHandler)
 
 function homeHandler() {
   Router.modules.home().then(module => module.renderHome());
 }
+
+homeHandler()
 
 
 

@@ -12,6 +12,7 @@ const types = [
 let type = undefined; 
 
 function renderHome(){
+  console.log('Hello from home.js');
   const wrapper = document.createElement("div")
   wrapper.classList.add('home')
   wrapper.classList.add('page')
@@ -24,12 +25,11 @@ function renderHome(){
   const app = document.getElementById('app')
   app.innerHTML = ''
   app.append(wrapper)
-  console.log('Hello from home.js');
 
   document.addEventListener('click', event => {
     const btnType = event.target.dataset.btn
     if (btnType === 'type') {
-      type = event.target.innerText
+      type = event.target.innerText.toLowerCase()
       console.log("Chosen type is", type);
       Router.modules.categories().then(module => module.renderCategories());
     }

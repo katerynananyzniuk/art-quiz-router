@@ -17,3 +17,13 @@
 .page-btn:focus{
   box-shadow: 0 0 0 2px rgb(133, 133, 133);
 }
+[data-btn="type"]::first-letter,
+[data-btn="category"]::first-letter {
+  text-transform: uppercase;
+}
+.right{
+  color:green;
+}
+.other{
+  color: red;
+}

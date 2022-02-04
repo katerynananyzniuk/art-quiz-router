@@ -33,36 +33,37 @@ const categories = [
 ]
 
 function renderCategories(){
+  console.log('Hello from categories.js');
   const wrapper = document.createElement("div")
   wrapper.classList.add('categories')
   wrapper.classList.add('page')
   wrapper.innerHTML = `
   <h2>Hello from categories.js</h2>
 
-  <button class="page-btn" data-btn="category"><span>${portrait.number}</span> ${portrait.title}</button>
-  <button class="page-btn" data-btn="category"><span>${landscape.number}</span> ${landscape.title}</button>
-  <button class="page-btn" data-btn="category"><span>${stillLife.number}</span> ${stillLife.title}</button>
-  <button class="page-btn" data-btn="category"><span>${graphic.number}</span> ${graphic.title}</button>
-  <button class="page-btn" data-btn="category"><span>${antique.number}</span> ${antique.title}</button>
-  <button class="page-btn" data-btn="category"><span>${avangard.number}</span> ${avantGarde.title}</button>
-  <button class="page-btn" data-btn="category"><span>${renaissane.number}</span> ${renaissane.title}</button>
-  <button class="page-btn" data-btn="category"><span>${surrealism.number}</span> ${surrealism.title}</button>
-  <button class="page-btn" data-btn="category"><span>${kitch.number}</span> ${kitch.title}</button>
-  <button class="page-btn" data-btn="category"><span>${minimalism.number}</span> ${minimalism.title}</button>
-  <button class="page-btn" data-btn="category"><span>${avangard.number}</span> ${avangard.title}</button>
-  <button class="page-btn" data-btn="category"><span>${industrial.number}</span> ${industrial.title}</button>
+  <button class="page-btn" data-btn="category">${portrait.title} <span>${portrait.number}</span></button>
+  <button class="page-btn" data-btn="category">${landscape.title} <span>${landscape.number}</span></button>
+  <button class="page-btn" data-btn="category">${stillLife.title} <span>${stillLife.number}</span></button>
+  <button class="page-btn" data-btn="category">${graphic.title} <span>${graphic.number}</span></button>
+  <button class="page-btn" data-btn="category">${antique.title} <span>${antique.number}</span></button>
+  <button class="page-btn" data-btn="category">${avantGarde.title} <span>${avangard.number}</span></button>
+  <button class="page-btn" data-btn="category">${renaissane.title} <span>${renaissane.number}</span></button>
+  <button class="page-btn" data-btn="category">${surrealism.title} <span>${surrealism.number}</span></button>
+  <button class="page-btn" data-btn="category">${kitch.title} <span>${kitch.number}</span></button>
+  <button class="page-btn" data-btn="category">${minimalism.title} <span>${minimalism.number}</span></button>
+  <button class="page-btn" data-btn="category">${avangard.title} <span>${avangard.number}</span></button>
+  <button class="page-btn" data-btn="category">${industrial.title} <span>${industrial.number}</span></button>
   `
   const app = document.getElementById('app')
   app.innerHTML = ''
   app.append(wrapper)
-  console.log('Hello from categories.js');
 
   document.addEventListener('click', event => {
     const btnType = event.target.dataset.btn
     if (btnType === 'category') {
-      let categoryNumber = event.target.innerText.split(' ')[0]
-      let categoryTitle = event.target.innerText.split(' ')[1]
-      console.log("Chosen category is", categoryTitle,"category number is", categoryNumber, "category title is", categoryTitle)
+      let categoryNumber = event.target.innerText.toLowerCase().split(' ')[1]
+      let categoryTitle = event.target.innerText.toLowerCase().split(' ')[0]
+
+      console.log("Chosen category is "+categoryTitle+". Category number is "+categoryNumber+".")
       category = new Category(type, categoryTitle, categoryNumber)
       Router.modules.question().then(module => module.renderQuestion());
     }
