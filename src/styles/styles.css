@@ -21,9 +21,9 @@
 [data-btn="category"]::first-letter {
   text-transform: uppercase;
 }
-.right{
+/* .right{
   color:green;
 }
-.other{
+.wrong{
   color: red;
-}
+} */

@@ -18,30 +18,30 @@ function renderQuestion(){
   ?`Кто автор данной картины "${item.name}"?`
   :`Какую картину написал ${item.author}?`}</h3>
 
-  ${mixAnswers(rightAnswer(item), otherAnswer(images), otherAnswer(images), otherAnswer(images))}
+  ${mixAnswers(rightAnswer(item), wrongAnswer(images), wrongAnswer(images), wrongAnswer(images))}
   `
 
   function rightAnswer(el) {
     return `<button class="page-btn right" data-btn="answer">${(type === 'artists')
     ?`${el.author}`:`${el.name}`}</button>`;
   }
-  function otherAnswer(imgs) {
-    return `<button class="page-btn other" data-btn="answer">${(type === 'artists')
+  function wrongAnswer(imgs) {
+    return `<button class="page-btn wrong" data-btn="answer">${(type === 'artists')
     ?`${imgs.map(el=>el.author)[generateRandomNumber(0,240)]}`:`${imgs.map(el=>el.name)[generateRandomNumber(0,240)]}`}</button>`;
   }
   function generateRandomNumber(min, max) { 
     return Math.floor(Math.random() * (max - min + 1) + min)
   }
-  function mixAnswers(rightAnswer, otherAnswer1, otherAnswer2, otherAnswer3) {
+  function mixAnswers(rightAnswer, wrongAnswer1, wrongAnswer2, wrongAnswer3) {
     let index = generateRandomNumber(1, 4)
     switch(index) {
-      case 1: return `${rightAnswer} ${otherAnswer1} ${otherAnswer2} ${otherAnswer3}`
+      case 1: return `${rightAnswer} ${wrongAnswer1} ${wrongAnswer2} ${wrongAnswer3}`
       break
-      case 2: return `${otherAnswer1} ${rightAnswer} ${otherAnswer2} ${otherAnswer3}`
+      case 2: return `${wrongAnswer1} ${rightAnswer} ${wrongAnswer2} ${wrongAnswer3}`
       break
-      case 3: return `${otherAnswer1} ${otherAnswer2} ${rightAnswer} ${otherAnswer3}`
+      case 3: return `${wrongAnswer1} ${wrongAnswer2} ${rightAnswer} ${wrongAnswer3}`
       break
-      case 4: return `${otherAnswer1} ${otherAnswer2} ${otherAnswer3} ${rightAnswer}`
+      case 4: return `${wrongAnswer1} ${wrongAnswer2} ${wrongAnswer3} ${rightAnswer}`
     }
   }
 
@@ -55,6 +55,25 @@ function renderQuestion(){
   const app = document.getElementById('app')
   app.innerHTML = ''
   app.append(wrapper)
+
+  document.addEventListener('click', event => {
+    const btnType = event.target.dataset.btn
+    if (btnType === 'answer') {
+      if (event.target.classList.contains('right')) {
+        console.log(event.target.innerHTML + ' right');
+        alert('right!')
+        // let response = true
+        // let result = new Result(response, )
+        // Router.modules.result().then(module => module.renderResult());
+      } else if (event.target.classList.contains('wrong')) {
+        console.log(event.target.innerHTML + ' wrong');
+        alert('wrong!')
+        // let response = false
+        // let result = new Result(response, )
+        // Router.modules.result().then(module => module.renderResult());
+      }
+    }
+  })
 }
 
 
