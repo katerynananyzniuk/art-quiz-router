@@ -22,7 +22,7 @@ function renderQuestion(){
   `
 
   function rightAnswer(el) {
-    return `<button class="page-btn right" data-btn="answer">${(type === 'artists')
+    return `<button class="page-btn right" data-btn="answer" data-id="${el.imageNum}">${(type === 'artists')
     ?`${el.author}`:`${el.name}`}</button>`;
   }
   function wrongAnswer(imgs) {
